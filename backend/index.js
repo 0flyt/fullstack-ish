@@ -3,6 +3,25 @@ const express = require('express'),
 
 const app = express();
 
+const dotenv = require('dotenv'),
+  { client } = require('pg');
+
+dotenv.config();
+
+const client = new client({
+  connectionString: process.env.PGURI,
+});
+
+client.connect();
+
+app.get('/api', async (_request, response) => {
+  const { rows } = await client.query('SELECT * FROM cities WHERE name = $1', [
+    'Stockholm',
+  ]);
+
+  response.send(rows);
+});
+
 app.get('/api', (_request, response) => {
   response.send({ hello: 'World' });
 });
