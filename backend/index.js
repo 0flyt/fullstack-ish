@@ -16,10 +16,6 @@ app.get('/api/two', (_request, response) => {
 
 app.use(express.static(path.join(path.resolve(), 'dist')));
 
-app.listen(port, () => {
-  console.log(`Redo på http://localhost:${port}/`);
-});
-
 const dotenv = require('dotenv'),
   { Client } = require('pg');
 
@@ -37,4 +33,8 @@ app.get('/api', async (_request, response) => {
   ]);
 
   response.send(rows);
+});
+
+app.listen(port, () => {
+  console.log(`Redo på http://localhost:${port}/`);
 });
