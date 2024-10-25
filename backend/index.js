@@ -3,9 +3,9 @@ const express = require('express'),
 
 const app = express();
 
-app.get('/api', (_request, response) => {
-  response.send({ hello: 'World' });
-});
+// app.get('/api', (_request, response) => {
+//   response.send({ hello: 'World' });
+// });
 app.get('/api/one', (_request, response) => {
   response.send({ hello: 'One' });
 });
