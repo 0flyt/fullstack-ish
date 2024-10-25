@@ -2,6 +2,7 @@ const express = require('express'),
   path = require('path');
 
 const app = express();
+const port = process.env.PORT || 4000;
 
 // app.get('/api', (_request, response) => {
 //   response.send({ hello: 'World' });
@@ -15,8 +16,8 @@ app.get('/api/two', (_request, response) => {
 
 app.use(express.static(path.join(path.resolve(), 'dist')));
 
-app.listen(3000, () => {
-  console.log('Redo på http://localhost:3000/');
+app.listen(port, () => {
+  console.log(`Redo på http://localhost:${port}/`);
 });
 
 const dotenv = require('dotenv'),
