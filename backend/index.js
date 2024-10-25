@@ -20,11 +20,11 @@ app.listen(3000, () => {
 });
 
 const dotenv = require('dotenv'),
-  { client } = require('pg');
+  { Client } = require('pg');
 
 dotenv.config();
 
-const client = new client({
+const client = new Client({
   connectionString: process.env.PGURI,
 });
 
