@@ -28,9 +28,7 @@ const client = new Client({
 client.connect();
 
 app.get('/api', async (_request, response) => {
-  const { rows } = await client.query('SELECT * FROM cities WHERE name = $1', [
-    'Stockholm',
-  ]);
+  const { rows } = await client.query('SELECT * FROM posts');
 
   response.send(rows);
 });
