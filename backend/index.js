@@ -19,7 +19,10 @@ const client = new Client({
 client.connect();
 
 app.get('/api', async (_req, res) => {
-  const { rows } = await client.query('SELECT * FROM posts');
+  const insertQuery = `
+  SELECT * FROM posts
+  `;
+  const { rows } = await client.query(insertQuery);
 
   res.send(rows);
 });
@@ -65,7 +68,7 @@ app.put('/api/update/:id', async (req, res) => {
   try {
     const updateQuery = `
     UPDATE posts
-    SET title = $1, content = $2
+    SET title = $1, content = $2, isupdated = true, updated_at = CURRENT_TIMESTAMP
     WHERE id = $3
     `;
 

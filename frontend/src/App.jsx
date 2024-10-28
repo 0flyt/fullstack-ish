@@ -15,10 +15,13 @@ function App() {
   dayjs.extend(utc);
   dayjs.extend(timezone);
 
-  const formattedDate = dayjs
-    .utc(state.created_at)
-    .tz('Europe/Stockholm')
-    .format('YYYY-MM-DD HH:mm');
+  const formattedDate = (date) => {
+    return dayjs
+      .utc(date)
+      .tz('Europe/Stockholm')
+      .add(1, 'hour')
+      .format('YYYY-MM-DD HH:mm');
+  };
 
   const handleNewPost = () => {
     setIsEditMode(false);
@@ -41,7 +44,6 @@ function App() {
   };
 
   const handleSavePost = async (postData) => {
-    console.log(postData, 'postData');
     if (isEditMode) {
       await fetch(`/api/update/${selectedPost.id}`, {
         method: 'PUT',
@@ -49,7 +51,6 @@ function App() {
         body: JSON.stringify(postData),
       });
     } else {
-      console.log(selectedPost, 'selectedPost');
       await fetch('/api/post', {
         method: 'POST',
         headers: {
@@ -66,7 +67,6 @@ function App() {
       .then((response) => response.json())
       .then((result) => {
         setState(result);
-        console.log('state:', result);
       });
   }, [refresh]);
 
@@ -87,12 +87,16 @@ function App() {
 
         <div className="post-list">
           {state
-            .slice()
+            // .slice()
             .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
             .map((item) => (
               <div className="post-card" key={item.id}>
                 <h2 className="post-title">{item.title}</h2>
-                <p className="post-date">{formattedDate}</p>
+                <p className="post-date">
+                  {item.isupdated
+                    ? `Updated at: ${formattedDate(item.updated_at)}`
+                    : `Posted at: ${formattedDate(item.created_at)}`}
+                </p>
                 <p className="post-content">{item.content}</p>
                 <button
                   onClick={() =>

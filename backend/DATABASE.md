@@ -6,6 +6,9 @@ created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+ALTER TABLE posts
+ADD COLUMN isupdated BOOLEAN DEFAULT FALSE;
+
 INSERT INTO posts (title, content)
 VALUES ('Blog title', 'Blog content');
 
