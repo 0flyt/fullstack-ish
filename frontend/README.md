@@ -1,8 +1,5 @@
-# React + Vite
+# https://fullstack-ish-qtr8.onrender.com/
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Content Delivery Networks (CDN) är ett server-nätverk som finns placerat världen över och som har kopior av ens data (webbplatser, applikationer, osv.). Ju närmare en server användaren befinner sig ju kortare fördröjning är det innan användaren får sin data, vilket ger snabbare laddningstider och användarupplevelse. Servrarna har som syfte att alltid vara igång, men skulle en server stängas av utav någon anledning eller bli överbelastad blir datan istället tillgänglig från en annan server. Cloudflare är en av många CDN-leverantörer.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Monitorering är ett sätt att övervaka sitt system, webbplats, applikation, eller andra tjänster. Detta görs genom att mäta data kring serversvar, serverrespons, trafik, ping-kontroller, med mera. Syftet med monitorering är att få statistik och upptäcka problem snabbt, eller undvika problem genom att se vad som behövs optimeras. Skulle en mätning få ett onormalt (långsamt) svar eller inget svar alls kan en alert skickas via SMS/Email så att en återgärd snabbt kan ske. Scout APM och Pingdom är två exempel på monitorerings-leverantörer.

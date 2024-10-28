@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import ModalComponent from './modalComponent';
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -8,6 +11,14 @@ function App() {
   const [selectedPost, setSelectedPost] = useState(null);
   const [state, setState] = useState([]);
   const [refresh, setRefresh] = useState(false);
+
+  dayjs.extend(utc);
+  dayjs.extend(timezone);
+
+  const formattedDate = dayjs
+    .utc(state.created_at)
+    .tz('Europe/Stockholm')
+    .format('YYYY-MM-DD HH:mm');
 
   const handleNewPost = () => {
     setIsEditMode(false);
@@ -81,7 +92,7 @@ function App() {
             .map((item) => (
               <div className="post-card" key={item.id}>
                 <h2 className="post-title">{item.title}</h2>
-                <p className="post-date">{item.created_at}</p>
+                <p className="post-date">{formattedDate}</p>
                 <p className="post-content">{item.content}</p>
                 <button
                   onClick={() =>
