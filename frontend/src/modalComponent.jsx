@@ -26,6 +26,8 @@ const ModalComponent = ({
   const handleSave = (e) => {
     e.preventDefault();
     onSave({ title, content });
+    setTitle('');
+    setContent('');
     onClose();
   };
 

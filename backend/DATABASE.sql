@@ -12,9 +12,9 @@ ADD COLUMN isupdated BOOLEAN DEFAULT FALSE;
 INSERT INTO posts (title, content)
 VALUES ('Blog title', 'Blog content');
 
-SELECT \* FROM posts ORDER BY created_at DESC;
+SELECT * FROM posts ORDER BY created_at DESC;
 
-SELECT \* FROM posts WHERE id = 1;
+SELECT * FROM posts WHERE id = 1;
 
 UPDATE posts
 SET title = 'Updated Blog Title',
