@@ -18,10 +18,10 @@ const client = new Client({
 
 client.connect();
 
-app.get('/api', async (_request, response) => {
+app.get('/api', async (_req, res) => {
   const { rows } = await client.query('SELECT * FROM posts');
 
-  response.send(rows);
+  res.send(rows);
 });
 
 app.post('/api/post', async (req, res) => {
@@ -34,13 +34,9 @@ app.post('/api/post', async (req, res) => {
     `;
 
     const result = await client.query(insertQuery, [title, content]);
-    res
-      .status(201)
-      .json({ message: 'Post created successfully', post: result.rows[0] });
+    res.status(201).json({ message: 'Post created', post: result.rows[0] });
   } catch (error) {
-    res
-      .status(500)
-      .json({ error: 'An error occurred while creating the post' });
+    res.status(500).json({ error: 'Error when creating post' });
     console.error(error.message);
   }
 });

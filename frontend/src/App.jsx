@@ -75,24 +75,27 @@ function App() {
         />
 
         <div className="post-list">
-          {state.map((item, index) => (
-            <div className="post-card" key={index}>
-              <h2 className="post-title">{item.title}</h2>
-              <p className="post-date">{item.created_at}</p>
-              <p className="post-content">{item.content}</p>
-              <button
-                onClick={() =>
-                  handleEditPost({
-                    id: item.id,
-                    title: item.title,
-                    content: item.content,
-                  })
-                }
-              >
-                Edit
-              </button>
-            </div>
-          ))}
+          {state
+            .slice()
+            .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+            .map((item) => (
+              <div className="post-card" key={item.id}>
+                <h2 className="post-title">{item.title}</h2>
+                <p className="post-date">{item.created_at}</p>
+                <p className="post-content">{item.content}</p>
+                <button
+                  onClick={() =>
+                    handleEditPost({
+                      id: item.id,
+                      title: item.title,
+                      content: item.content,
+                    })
+                  }
+                >
+                  Edit
+                </button>
+              </div>
+            ))}
         </div>
       </div>
     </>
