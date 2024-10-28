@@ -16,11 +16,7 @@ function App() {
   dayjs.extend(timezone);
 
   const formattedDate = (date) => {
-    return dayjs
-      .utc(date)
-      .tz('Europe/Stockholm')
-      .add(1, 'hour')
-      .format('YYYY-MM-DD HH:mm');
+    return dayjs.utc(date).tz('Europe/Stockholm').format('YYYY-MM-DD HH:mm');
   };
 
   const handleNewPost = () => {
